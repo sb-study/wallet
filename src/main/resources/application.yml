@@ -18,9 +18,9 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://192.168.10.213:3306/wal?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://106.15.37.65:3306/wal?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: gaodeyang
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
     type: com.alibaba.druid.pool.DruidDataSource
