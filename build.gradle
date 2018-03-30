@@ -35,8 +35,32 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	compile('com.alibaba:druid:1.0.26')
 	compile('com.github.pagehelper:pagehelper:5.0.0')
+//	compile('org.springframework.boot:spring-boot-starter-logging')
 	compile('com.github.pagehelper:pagehelper-spring-boot-autoconfigure:1.2.3')
 	compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+//打包发布的配置
+jar {
+	String someString = ''
+	configurations.runtime.each {someString = someString + " lib//"+it.name}
+	manifest {
+		attributes 'Main-Class': 'com.est.consumer.ConsumerApplication'
+		attributes 'Class-Path': someString
+	}
+}
+//清除上次的编译过的文件
+task clearPj(type:Delete){
+	delete 'build','target'
+}
+task copyJar(type:Copy){
+	from configurations.runtime
+	into ('build/libs/lib')
+}
+//把JAR复制到目标目录
+task release(type: Copy,dependsOn: [build,copyJar]) {
+// from 'conf'
+// into ('build/libs/eachend/conf') // 目标位置
 }
