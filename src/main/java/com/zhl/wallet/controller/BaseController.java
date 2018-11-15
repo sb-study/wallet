@@ -33,4 +33,5 @@ public class BaseController {
         PageInfo<Pool> page = new PageInfo<>(pools);
         return page.getList();
     }
+
 }
